@@ -9,7 +9,7 @@
       channel: test-app-ch
       target: helm-app-split
     helm:
-      url: https://raw.githubusercontent.com/r2coding/helm-deploy-config/main/
+      url: https://raw.githubusercontent.com/r2coding/helm-deploy-code/main/
       insecureSkipVerify: true
       chart:
         name: sample-acm-helm-app
