@@ -7,7 +7,7 @@
     prefix: helloworld
     namespace:
       channel: test-app-ch
-      target: test-app-dev
+      target: helm-app-full
     helm:
       url: https://raw.githubusercontent.com/r2coding/helm-deploy-demo/dev/
       insecureSkipVerify: true
