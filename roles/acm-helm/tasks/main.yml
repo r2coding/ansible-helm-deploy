@@ -1,0 +1,31 @@
+---
+# tasks file for acm-helm
+- name: configuring
+  set_fact:
+    undeploy_order:
+      - application.yaml
+      - subscription.yaml
+      - placement.yaml
+      - channel.yaml
+      - secret.yaml
+    deploy_order:
+      - secret.yaml
+      - channel.yaml
+      - placement.yaml
+      - subscription.yaml
+      - application.yaml
+- name: configuring 2
+  set_fact:
+    state: "{{ 'absent' if undeploy else 'present' }}"
+    items: "{{ undeploy_order if undeploy else deploy_order }}"
+- name: debug
+  debug: var=items
+- name: create namespace
+  k8s:
+    state: "present"
+    definition: "{{ lookup('template', 'namespace.yaml') }}"
+- name: appling changes
+  k8s:
+    state: "{{ state }}"
+    definition: "{{ lookup('template', item) }}"
+  loop: "{{ items }}"

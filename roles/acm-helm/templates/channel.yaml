@@ -1,0 +1,10 @@
+apiVersion: apps.open-cluster-management.io/v1
+kind: Channel
+metadata:
+  name: {{ prefix }}-channel
+  namespace: {{ namespace.channel }}
+  labels: {{ labels }}
+spec:
+  pathname: {{ helm.url }}
+  insecureSkipVerify: {{ helm.insecureSkipVerify }}
+  type: HelmRepo

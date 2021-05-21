@@ -1,0 +1,9 @@
+apiVersion: apps.open-cluster-management.io/v1
+kind: PlacementRule
+metadata:
+  name: {{ prefix }}-placement
+  namespace: {{ namespace.target }}
+  labels: {{ labels }}
+spec:
+  clusterReplicas: {{ cluster.replicas }}
+  clusterSelector: {{ cluster.selector }}
