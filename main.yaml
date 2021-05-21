@@ -1,36 +1,32 @@
 - hosts: localhost
   connection: local
   roles:
-  - acm-helm
-
-
+    - acm-helm
   vars:
-    hosts:
-      localhost:
-        undeploy: no
-        prefix: helloworld
-        namespace:
-          channel: test-app-ch
-          target: test-app
-        helm:
-          url: https://github.com/r2coding/helm-deploy-demo/dev
-          insecureSkipVerify: true
-          chart:
-            name: sample-acm-helm-app
-            alias: sample
-            version: 0.1.3
-          user: 
-          accessToken: 
-        labels:
-          app: helloworld-app
-        cluster:
-          replicas: 1
-          selector:
-            matchLabels:
-              env: development
-        app:
-          matchExpressions:
-          - key: app
-            operator: In
-            values:
-              - helloworld-app
+    undeploy: false
+    prefix: helloworld
+    namespace:
+      channel: test-app-ch
+      target: test-app-dev
+    helm:
+      url: https://raw.githubusercontent.com/r2coding/helm-deploy-demo/dev/
+      insecureSkipVerify: true
+      chart:
+        name: sample-acm-helm-app
+        alias: sample
+        version: 0.1.3
+      user:
+      accessToken: eyJhbGciOiJSUzI1NiIsImtpZCI6ImNCZVZUdlQ4emJKMThtQWtqZWFpN185ckg2WUNVV1VRYWRwUUpLV0xlU3cifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJ0ZXN0LWFwcC1kZXYiLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlY3JldC5uYW1lIjoiYWNtLWFkbWluLXRva2VuLWp4OXRoIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZXJ2aWNlLWFjY291bnQubmFtZSI6ImFjbS1hZG1pbiIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6ImU1MDMwNDU1LTc5MmQtNDU5Yy1iM2Y3LTI4ODEyMGQ0NjgxOCIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDp0ZXN0LWFwcC1kZXY6YWNtLWFkbWluIn0.Azq36-h1H4RJ4aNlZYiabOBtHWJBBVEXN0MfunCoYHk6vrwK6TMdkmfBDsJxt-ywVIW8QTuctMvaBW-qUajUagjsVQHnPdVF7kVCPrAeaGwPOBhLVJqp3mf_jgac7kRMwjF3a85galluHeWU3-pMiaPS4tk2JMeXFjRpFblwY4IHv_ZuJyq4ruIlc4ndRIoCHfr-QYi1ADwDOfU5WlQV6dlrEzAuOAC9gBvSyYRuuEZm7Tswc9mYTxcjgCuICjOGv1tib0E8Y46Vc1_Bxrb-90szSqfhNEtFjfV_lq60OV4HH0X-zqS2p_m9JBVfpZP7zQkEMtKkg0BWlQjO3TbAgg
+    labels:
+      app: helloworld-app
+    cluster:
+      replicas: 1
+      selector:
+        matchLabels:
+          env: development
+    app:
+      matchExpressions:
+        - key: app
+          operator: In
+          values:
+            - helloworld-app
